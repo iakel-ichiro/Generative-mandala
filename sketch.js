@@ -1,24 +1,22 @@
-const crystal_radius = 400;
+//General Mandal Params
+const crystal_radius = 300;
 const number_of_crystals = 10;
 const sides = 6;
-// //grid
+// canvas size
 const margin = crystal_radius / 2;
-const columns = 1;
-const rows = 1;
-const padding = crystal_radius * 0.2;
-const gridbox = crystal_radius + padding;
-const start = crystal_radius / 2 + margin;
+const canvasSize = crystal_radius + margin;
+
+//Arrays
 let palette = [];
-crystation = [];
-let next_button;
-let n = 0;
+let crystation = [];
+let origin_x;
+let origin_y;
 
 function setup() {
-  const totalX = start + gridbox * columns;
-  const totalY = start + gridbox * rows;
-  createCanvas(totalX, totalY);
-  next_button = createButton("Next");
-
+  createCanvas(canvasSize, canvasSize);
+  origin_x = width / 2;
+  origin_y = height / 2;
+  background(200);
   palette = [
     color("#FF7773"),
     color("#52D1AD"),
@@ -32,25 +30,9 @@ function setup() {
 }
 
 function draw() {
+  //Fill crystall array with different crystals
   for (let i = 0; i < number_of_crystals; i++) {
-    const posX = width / 2;
-    const posY = height / 2;
-    crystation.push(new Crystal(posX, posY));
+    crystation.push(new Crystal(origin_x, origin_y));
   }
-  next_button.mousePressed(render_next);
-  crystation[n].render();
-}
-
-function render_next() {
-  n += 1;
-}
-
-function grid_display() {
-  for (let x = 0; x < columns; x++) {
-    for (let y = 0; y < rows; y++) {
-      const posX = start + x * gridbox;
-      const posY = start + y * gridbox;
-      crystation.push(new Crystal(posX, posY));
-    }
-  }
+  crystation[1].render(); // render a single crystal for now.
 }
