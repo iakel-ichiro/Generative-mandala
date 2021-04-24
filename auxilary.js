@@ -66,42 +66,45 @@ function myTriangle(center, radius, direction) {
 const layerConstructors = [
   {
     name: "External Shape",
-    init: () => new ExternalShape(),
+    init: function (param) {
+      console.log(param);
+      return new ExternalShape(param);
+    },
     prob: 0.3,
   },
   {
     name: "Centered Shape",
-    init: () => new CenteredShape(),
+    init: (param) => new CenteredShape(param),
     prob: 0.3,
   },
   {
     name: "Circles",
-    init: () => new Circles(),
+    init: (param) => new Circles(param),
     prob: 0.3,
   },
   {
     name: "Stepped Lines",
-    init: () => new SteppedLines(),
+    init: (param) => new SteppedLines(param),
     prob: 0.3,
   },
   {
     name: "Dotted Lines",
-    init: () => new DottedLines(),
+    init: (param) => new DottedLines(param),
     prob: 0.3,
   },
   {
     name: "Ring of Shapes",
-    init: () => new RingOfShapes(),
+    init: (param) => new RingOfShapes(param),
     prob: 0.3,
   },
   {
     name: "Stepped Hexagons",
-    init: () => new SteppedHexagons(),
+    init: (param) => new SteppedHexagons(param),
     prob: 0.3,
   },
   {
     name: "Test Lines",
-    init: () => new guideLines(),
+    init: (param) => new guideLines(param),
     prob: 1,
   },
 ];

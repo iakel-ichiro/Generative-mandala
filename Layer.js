@@ -1,5 +1,5 @@
 class Layer {
-  constructor() {
+  constructor(param_) {
     this.sides = sides;
     this.numShapes = this.sides;
     this.angle = 360 / this.numShapes;
@@ -9,12 +9,13 @@ class Layer {
     this.thinStroke = 1;
     this.thickStroke = 3;
     this.layerColor = getRandomFromPalette();
+    this.param = param_;
   }
 }
 
 class Circles extends Layer {
-  constructor() {
-    super(); // whatever you extend from.... get it here
+  constructor(param_) {
+    super(param_); // whatever you extend from.... get it here
     this.shapeSize = (crystal_radius / 2) * random(1); //0.93 is nice!
     this.centerPos = crystal_radius / 2 - this.shapeSize / 2;
   }
@@ -33,8 +34,8 @@ class Circles extends Layer {
 }
 
 class SteppedLines extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.numSteps = randomSelectTwo()
       ? this.stepLevels
       : int(this.stepLevels * this.levelRatio);
@@ -61,8 +62,8 @@ class SteppedLines extends Layer {
 }
 
 class ExternalShape extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.polygonTrue = randomSelectTwo();
     this.weight = randomSelectTwo() ? this.thinStroke : this.thickStroke;
   }
@@ -72,19 +73,27 @@ class ExternalShape extends Layer {
     stroke(this.layerColor);
     strokeWeight(this.weight);
     push();
-    //translate(width/2, height/2)
-    if (this.polygonTrue) {
-      polygon(0, 0, crystal_radius / 2, 6);
+    if (this.param === null) {
+      console.log(input_params[0]);
+      if (this.polygonTrue) {
+        polygon(0, 0, crystal_radius / 2, 6);
+      } else {
+        ellipse(0, 0, crystal_radius, crystal_radius);
+      }
     } else {
-      ellipse(0, 0, crystal_radius, crystal_radius);
+      if (this.param === "circle") {
+        ellipse(0, 0, crystal_radius, crystal_radius);
+      } else {
+        polygon(0, 0, crystal_radius / 2, 6);
+      }
     }
     pop();
   }
 }
 
 class DottedLines extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.numShapes = randomSelectTwo() ? this.sides : this.sides * 2;
     this.angle = 360 / this.numShapes;
     this.shapeSize = 3;
@@ -111,8 +120,8 @@ class DottedLines extends Layer {
 }
 
 class CenteredShape extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.randomShape = random(1);
     this.shapeSize =
       floor(random(this.stepLevels / 2, this.stepLevels)) * this.singleStep;
@@ -136,8 +145,8 @@ class CenteredShape extends Layer {
 }
 
 class RingOfShapes extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.steps = floor(random(1, this.stepLevels));
     this.center = this.steps * this.singleStep;
     this.randomShape = random(1);
@@ -176,8 +185,8 @@ class RingOfShapes extends Layer {
 }
 
 class SteppedHexagons extends Layer {
-  constructor() {
-    super();
+  constructor(param_) {
+    super(param_);
     this.numSteps = randomSelectTwo()
       ? this.stepLevels
       : this.stepLevels * 1.25;

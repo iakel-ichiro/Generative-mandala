@@ -1,6 +1,6 @@
 //General Mandal Params
 const crystal_radius = 300;
-const number_of_crystals = 10;
+const number_of_crystals = 1;
 const sides = 6;
 // canvas size
 const margin = crystal_radius / 2;
@@ -11,6 +11,11 @@ let palette = [];
 let crystation = [];
 let origin_x;
 let origin_y;
+//Input parameters
+const input_params = {
+  external_shape: "circle",
+  centered_shape: "",
+};
 
 function setup() {
   createCanvas(canvasSize, canvasSize);
@@ -32,7 +37,10 @@ function setup() {
 function draw() {
   //Fill crystall array with different crystals
   for (let i = 0; i < number_of_crystals; i++) {
-    crystation.push(new Crystal(origin_x, origin_y));
+    crystation.push(new Crystal(origin_x, origin_y, input_params));
   }
-  crystation[1].render(); // render a single crystal for now.
+
+  //Define manually desired parameters
+
+  crystation[0].render(); // render a single crystal for now.
 }
