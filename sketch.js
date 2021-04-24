@@ -12,10 +12,7 @@ let crystation = [];
 let origin_x;
 let origin_y;
 //Input parameters
-const input_params = {
-  external_shape: "circle",
-  centered_shape: "",
-};
+let input_params = {};
 
 function setup() {
   createCanvas(canvasSize, canvasSize);
@@ -28,6 +25,16 @@ function setup() {
     color("#3F888F"),
     color("#497358"),
   ];
+
+  input_params = {
+    external_shape: {
+      shape: "circle",
+      color: palette[0],
+      scale: 0.5,
+      thickness: 1,
+    },
+    centered_shape: "",
+  };
 
   noLoop();
   angleMode(DEGREES);

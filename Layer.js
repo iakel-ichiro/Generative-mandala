@@ -66,26 +66,28 @@ class ExternalShape extends Layer {
     super(param_);
     this.polygonTrue = randomSelectTwo();
     this.weight = randomSelectTwo() ? this.thinStroke : this.thickStroke;
+    this.shape = this.param["shape"];
+    this.color = this.param["color"];
+    this.radius = crystal_radius;
   }
 
   render() {
     noFill();
-    stroke(this.layerColor);
+
     strokeWeight(this.weight);
     push();
-    if (this.param === null) {
-      console.log(input_params[0]);
-      if (this.polygonTrue) {
-        polygon(0, 0, crystal_radius / 2, 6);
-      } else {
-        ellipse(0, 0, crystal_radius, crystal_radius);
-      }
+    if (this.color) {
+      stroke(this.color);
     } else {
-      if (this.param === "circle") {
-        ellipse(0, 0, crystal_radius, crystal_radius);
-      } else {
-        polygon(0, 0, crystal_radius / 2, 6);
-      }
+      stroke(this.layerColor);
+    }
+    if (this.param["scale"]) {
+      this.radius *= this.param["scale"];
+    }
+    if (!this.polygonTrue || this.shape === "circle") {
+      ellipse(0, 0, this.radius, this.radius);
+    } else {
+      polygon(0, 0, this.radius / 2, 6);
     }
     pop();
   }
