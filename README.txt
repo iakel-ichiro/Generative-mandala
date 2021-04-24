@@ -1,0 +1,1 @@
+Welcome to the program which generates various types of geometric mandalas.
