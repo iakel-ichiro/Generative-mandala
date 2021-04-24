@@ -28,10 +28,10 @@ function setup() {
 
   input_params = {
     external_shape: {
-      shape: "circle",
-      color: palette[0],
-      scale: 0.5,
-      thickness: 1,
+      shape: "",
+      color: "",
+      scale: 1,
+      thickness: "",
     },
     centered_shape: "",
   };

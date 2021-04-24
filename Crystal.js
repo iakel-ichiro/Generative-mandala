@@ -10,7 +10,7 @@ class Crystal {
 
       let picker = random(1);
       if (param || picker > layercon.prob) {
-        this.layers.push(layercon.init(param));
+        this.layers.push(layercon.init(param, param));
       }
     });
     console.log(this.layers);
@@ -19,11 +19,10 @@ class Crystal {
   render(external_shape) {
     push();
     translate(this.x, this.y);
-    // this.layers.forEach((layer) => {
-    //   layer.render();
-    // });
+    this.layers.forEach((layer) => {
+      layer.render();
+    });
 
-    this.layers[0].render();
     pop();
   }
 }

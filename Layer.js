@@ -14,8 +14,8 @@ class Layer {
 }
 
 class Circles extends Layer {
-  constructor(param_) {
-    super(param_); // whatever you extend from.... get it here
+  constructor(param_layer) {
+    super(param_layer); // whatever you extend from.... get it here
     this.shapeSize = (crystal_radius / 2) * random(1); //0.93 is nice!
     this.centerPos = crystal_radius / 2 - this.shapeSize / 2;
   }
@@ -64,27 +64,21 @@ class SteppedLines extends Layer {
 class ExternalShape extends Layer {
   constructor(param_) {
     super(param_);
-    this.polygonTrue = randomSelectTwo();
-    this.weight = randomSelectTwo() ? this.thinStroke : this.thickStroke;
-    this.shape = this.param["shape"];
-    this.color = this.param["color"];
-    this.radius = crystal_radius;
+    let { shape, color, scale, thickness } = this.param;
+    this.shape = shape || randomSelectTwo();
+    this.weight =
+      thickness || (randomSelectTwo() ? this.thinStroke : this.thickStroke);
+    this.color = color || getRandomFromPalette();
+    this.radius = scale * crystal_radius || crystal_radius;
   }
 
   render() {
     noFill();
 
     strokeWeight(this.weight);
+    stroke(this.color);
     push();
-    if (this.color) {
-      stroke(this.color);
-    } else {
-      stroke(this.layerColor);
-    }
-    if (this.param["scale"]) {
-      this.radius *= this.param["scale"];
-    }
-    if (!this.polygonTrue || this.shape === "circle") {
+    if (!this.shape || this.shape === "circle") {
       ellipse(0, 0, this.radius, this.radius);
     } else {
       polygon(0, 0, this.radius / 2, 6);
