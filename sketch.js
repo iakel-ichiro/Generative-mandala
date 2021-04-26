@@ -33,7 +33,6 @@ function setup() {
       scale: 1,
       thickness: "",
     },
-    centered_shape: "",
   };
 
   noLoop();
@@ -46,8 +45,6 @@ function draw() {
   for (let i = 0; i < number_of_crystals; i++) {
     crystation.push(new Crystal(origin_x, origin_y, input_params));
   }
-
-  //Define manually desired parameters
 
   crystation[0].render(); // render a single crystal for now.
 }
