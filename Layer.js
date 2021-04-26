@@ -16,14 +16,11 @@ class Layer {
 class Circles extends Layer {
   constructor(param_) {
     super(param_); // whatever you extend from.... get it here
-    let { color, scale, thickness, radial_pos, num } = this.param;
-    this.shapeSize = scale * crystal_radius || (crystal_radius / 2) * random(1); //0.93 is nice!
-    this.centerPos =
-      (radial_pos * crystal_radius) / 2 - this.shapeSize / 2 ||
-      crystal_radius / 2 - this.shapeSize / 2;
-    this.weight = thickness || this.thinStroke;
-    this.color = color || getRandomFromPalette();
-    this.num = num || this.numShapes;
+    this.shapeSize = (crystal_radius / 2) * random(1); //0.93 is nice!
+    this.centerPos = crystal_radius / 2 - this.shapeSize / 2;
+    this.weight = this.thinStroke;
+    this.color = getRandomFromPalette();
+    this.num = this.numShapes;
     this.angle_circ = 360 / this.num;
   }
   render() {
