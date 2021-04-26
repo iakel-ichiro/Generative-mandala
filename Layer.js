@@ -15,7 +15,7 @@ class Layer {
 
 class Circles extends Layer {
   constructor(param_) {
-    super(param_); // whatever you extend from.... get it here
+    super(); // whatever you extend from.... get it here
     this.shapeSize = (crystal_radius / 2) * random(1); //0.93 is nice!
     this.centerPos = crystal_radius / 2 - this.shapeSize / 2;
     this.weight = this.thinStroke;
@@ -39,7 +39,7 @@ class Circles extends Layer {
 
 class SteppedLines extends Layer {
   constructor(param_) {
-    super(param_);
+    super();
     this.numSteps = randomSelectTwo()
       ? this.stepLevels
       : int(this.stepLevels * this.levelRatio);
@@ -66,9 +66,8 @@ class SteppedLines extends Layer {
 }
 
 class ExternalShape extends Layer {
-  constructor(param_) {
-    super(param_);
-    let { shape, color, scale, thickness } = this.param;
+  constructor({ shape, color, scale, thickness }) {
+    super();
     this.shape = shape || randomSelectTwo();
     this.weight =
       thickness || (randomSelectTwo() ? this.thinStroke : this.thickStroke);
@@ -93,7 +92,7 @@ class ExternalShape extends Layer {
 
 class DottedLines extends Layer {
   constructor(param_) {
-    super(param_);
+    super();
     this.numShapes = randomSelectTwo() ? this.sides : this.sides * 2;
     this.angle = 360 / this.numShapes;
     this.shapeSize = 3;
@@ -121,7 +120,7 @@ class DottedLines extends Layer {
 
 class CenteredShape extends Layer {
   constructor(param_) {
-    super(param_);
+    super();
     this.randomShape = random(1);
     this.shapeSize =
       floor(random(this.stepLevels / 2, this.stepLevels)) * this.singleStep;
@@ -146,7 +145,7 @@ class CenteredShape extends Layer {
 
 class RingOfShapes extends Layer {
   constructor(param_) {
-    super(param_);
+    super();
     this.steps = floor(random(1, this.stepLevels));
     this.center = this.steps * this.singleStep;
     this.randomShape = random(1);
@@ -186,7 +185,7 @@ class RingOfShapes extends Layer {
 
 class SteppedHexagons extends Layer {
   constructor(param_) {
-    super(param_);
+    super();
     this.numSteps = randomSelectTwo()
       ? this.stepLevels
       : this.stepLevels * 1.25;
