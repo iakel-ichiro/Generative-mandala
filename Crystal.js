@@ -6,7 +6,7 @@ class Crystal {
     this.input_params = input_params_;
 
     layerConstructors.forEach((layercon, index) => {
-      let param = input_params[Object.keys(this.input_params)[index]];
+      let param = this.input_params[Object.keys(this.input_params)[index]];
 
       let picker = random(1);
       if (param || picker > layercon.prob) {

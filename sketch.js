@@ -28,6 +28,7 @@ function setup() {
 
   input_params = {
     external_shape: {
+      ID: "External Shape",
       shape: "circle",
       color: "",
       scale: 1,
